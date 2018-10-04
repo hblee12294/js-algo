@@ -7,8 +7,8 @@ arr.length = 2
 console.log(arr)
 
 let arr2 = new Array(2)
-console.log(arr[0])
-console.log(arr.length)
+console.log(arr2[0])
+console.log(arr2.length)
 
 console.log([] + 1)
 console.log([1] + 1)
