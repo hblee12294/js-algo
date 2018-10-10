@@ -1,0 +1,31 @@
+<html>
+  <body>
+    <a href="http://example.com/file.zip">...</a>
+    <a href="http://dfddfds.com">...</a>
+
+    <script>
+      for (let elem of document.body.children) {
+        if (elem.matches('a[href$="zip"]')) {
+          alert('The archive reference: ' + elem.href)
+        }
+      }
+    </script>
+
+    <h1>Contents</h1>
+
+    <div class="contents">
+      <ul class="book">
+        <li class="chapter">Chapter 1</li>
+        <li class="chapter">Chapter 1</li>
+      </ul>
+    </div>
+
+    <script>
+      let chapter = document.querySelector('.chapter')
+
+      alert(chapter.closest('.book'))
+      alert(chapter.closest('.contents'))
+      alert(chapter.closest('h1'))
+    </script>
+  </body>
+</html>
