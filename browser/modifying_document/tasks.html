@@ -1,0 +1,31 @@
+<html>
+  <body>
+    <ol id="elem">
+        <li>Hello</li>
+        <li>World</li>
+      </ol>
+      
+      <script>
+        function clear(elem) { 
+        //  elem.innerHTML = null 
+        // &&
+          while (elem.firstChild) {
+            elem.firstChild.remove()
+          }
+        }
+      
+        clear(elem) // clears the list
+      </script>
+
+      <ol id="list"></ol>
+
+      <script>
+        let content
+        while (content = prompt('enter an element')) {
+          let newLi = document.createElement('li')
+          newLi.textContent = content
+          list.append(newLi)
+        }
+      </script>
+  </body>
+</html>

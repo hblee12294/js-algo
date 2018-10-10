@@ -1,0 +1,45 @@
+<html>
+  <head>
+    <style>
+      .hours {
+        color: red;
+      }
+
+      .minutes {
+        color: blue;
+      }
+
+      .seconds {
+        color: green;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="clock">
+      <span class="hours">hh</span>: <span class="minutes">mm</span>: <span class="seconds">ss</span>
+    </div>
+
+    <script>
+      function getTime() {
+        let clock = document.getElementById('clock')
+        let date = new Date()
+
+        let hours = date.getHours()
+        if (hours < 10) hours = '0' + hours
+        let minutes = date.getMinutes()
+        if (minutes < 10) hours = '0' + minutes
+        let seconds = date.getSeconds()
+        if (seconds < 10) seconds = '0' + seconds
+
+        clock.children[0].innerHTML = hours
+        clock.children[1].innerHTML = minutes
+        clock.children[2].innerHTML = seconds
+      }
+
+      let timer
+      timer = setInterval(() => getTime(), 1000)
+
+    </script>
+  </body>
+</html>

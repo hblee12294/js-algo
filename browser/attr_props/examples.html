@@ -1,0 +1,81 @@
+<html>
+  <body>
+    <!-- <script>
+      document.body.myData = {
+        name: 'Caesar',
+        title: 'Imperator'
+      }
+
+      document.body.sayTagName = function () {
+        alert(this.tagName)
+      }
+
+      alert(document.body.myData.title)
+      document.body.sayTagName()
+    </script> -->
+
+    <div id="elem" about="Elephant"></div>
+
+    <!-- <script>
+      alert(elem.getAttribute('About'))
+      alert(elem.hasAttribute('id'))
+
+      elem.setAttribute('Test', 123)
+      alert(elem.outerHTML)
+
+      for (let attr of elem.attributes) {
+        alert(`${ attr.name } = ${ attr.value }`)
+      }
+    </script> -->
+
+    <input type="text">
+
+    <!-- <script>
+      let input = document.querySelector('input')
+
+      input.setAttribute('value', 'text')
+      alert(input.value)
+
+      input.value = 'new value'
+      alert(input.value)
+      alert(input.getAttribute('value'))
+    </script> -->
+
+    <div id="div" style="color:red; font-size:120%;">Hello</div>
+
+    <!-- <script>
+      alert(div.getAttribute('style'))
+
+      alert(div.style)
+      alert(div.style.color)
+    </script> -->
+
+    <a id="a" href="#hello"></a>
+
+    <!-- <script>
+      alert(a.getAttribute('href'))
+      alert(a.href)
+    </script> -->
+
+    <style>
+      .order[data-order-state="new"] {
+        color: green;
+      }
+
+      .order[data-order-state="pending"] {
+        color: blue;
+      }
+
+      .order[data-order-state="canceled"] {
+        color: red;
+      }
+    </style>
+
+    <div id="order" class="order" data-order-state="new">A new order</div>
+
+    <script>
+      alert(order.dataset.orderState)
+      order.dataset.orderState = 'pending'
+    </script>
+  </body>
+</html>

@@ -1,0 +1,54 @@
+<html>
+  <body>
+    <ol id="ol">
+        <li>0</li>
+        <li>1</li>
+        <li>2</li>
+    </ol>
+
+    <script>
+      ol.before('before')
+      ol.after('after')
+
+      let prepend = document.createElement('li')
+      prepend.innerHTML = 'prepend'
+      ol.prepend(prepend)
+
+      let append = document.createElement('li')
+      append.innerHTML = 'append'
+      ol.append(append)
+
+      let lists = document.getElementsByTagName('li')
+      let midLi = lists[Math.floor(lists.length/2)]
+      let newMidLi = document.createElement('li')
+      newMidLi.innerHTML = '<strong style="color: red;">new mid li</strong>'
+      midLi.replaceWith(newMidLi)
+    </script>
+
+    <div id="div"></div>
+
+    <script>
+      div.insertAdjacentHTML('beforebegin', '<p>Before begin</p>')
+      div.insertAdjacentHTML('afterbegin', '<p>After begin</p>')
+      div.insertAdjacentHTML('afterend', '<p>After end</p>')
+      div.insertAdjacentHTML('beforeend', '<p>Before end</p>')
+    </script>
+
+    <div class="alert" id="div1">
+      <strong>Hi there!</strong>You've read an important message
+    </div>
+
+    <script>
+      let div2 = div1.cloneNode(true)
+      div2.querySelector('strong').innerHTML = 'Bye there'
+      div1.after(div2)
+    </script>
+
+    <div id="first">First</div>
+    <div id="second">Second</div>
+
+    <script>
+      second.after(first)
+    </script>
+  </body>
+</html>

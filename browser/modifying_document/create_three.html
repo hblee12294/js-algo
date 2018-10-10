@@ -1,0 +1,63 @@
+<html>
+  <body>
+    <div id="container"></div>
+
+    <script>
+      let data = {
+        "Fish": {
+          "trout": {},
+          "salmon": {}
+        },
+
+        "Tree": {
+          "Huge": {
+            "sequoia": {},
+            "oak": {}
+          },
+
+          "Flowering": {
+            "redbud": {},
+            "magnolia": {}
+          }
+        }
+      }
+
+      function createTree(node, data) {
+
+        function recursion(data) {
+          let subData = Object.keys(data)
+          if (subData.length === 0) {
+            return ''
+          }
+
+          let list = ''
+          for (let sdata of subData ) {
+            list += `<li>${ sdata }${ recursion(data[sdata]) }</li>`
+          }
+
+          return `<ul>
+            ${ list }
+          </ul>`
+        }
+        // node.insertAdjacentHTML('afterbegin', recursion(data))
+        node.innerHTML = recursion(data)
+      }
+
+      function createTree2(node, obj) {
+        node.innerHTML = createTreeText(obj)
+
+        function createTreeText(obj) {
+          let li = ''
+          for (let key in obj) {
+            li += '<li>' + key + createTreeText(obj[key]) + '</li>'
+          }
+
+          return li ? '<ul>' + li + '</ul>' : ''
+        }
+      }
+
+      let container = document.getElementById('container')
+      createTree(container, data)
+    </script>
+  </body>
+</html>

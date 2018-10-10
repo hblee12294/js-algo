@@ -1,0 +1,13 @@
+<html>
+  <body>
+    <script>
+      let body = document.body
+      body.innerHTML = "<!--" + body.tagName + '-->'
+      alert(body.firstChild.data)
+
+      alert(document.constructor.name)
+      alert(HTMLDocument.prototype.__proto__.constructor.name)
+      alert(HTMLDocument.prototype.__proto__.__proto__.constructor.name)
+    </script>
+  </body>
+</html>

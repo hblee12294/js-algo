@@ -1,0 +1,41 @@
+<html>
+  <head>
+    <style>
+      .alert {
+        padding: 15px;
+        border: 1px solid #d6e9c6;
+        border-radius: 4px;
+        color: #3c763d;
+        background-color: #dff0d8;
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <!-- <script>
+      let div = document.createElement('div')
+      // let textNode = document.createTextNode('Here I am')
+      div.className = 'alert alert-success'
+      div.innerHTML = '<strong>Hi there!</strong> You\'ve read an importance message.'
+
+      document.body.appendChild(div)
+    </script> -->
+
+    <ol id="list">
+      <li>0</li>
+      <li>1</li>
+      <li>2</li>
+    </ol>
+
+    <script>
+      let newLi = document.createElement('li') 
+      newLi.innerHTML = 'Hello, word'
+
+      // list.insertBefore(newLi, list.children[1])
+      // list.appendChild(newLi)
+      // list.insertBefore(newLi, list.firstChild)
+      list.insertBefore(newLi, list.firstElementChild)
+    </script>
+  </body>
+</html>

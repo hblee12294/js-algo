@@ -1,0 +1,31 @@
+<html>
+  <body>
+    <script>
+      let elem = document.body
+      
+      alert(elem.nodeType)
+      alert(elem.firstChild.nodeType)
+      alert(document.nodeType)
+
+      elem.innerHTML = '<b>test'
+      alert(elem.innerHTML)
+    </script>
+
+    <div id="ele">Hello <b>World</b></div>
+
+    <script>
+      alert(ele.outerHTML)
+    </script>
+
+    <div id="hello">Hello, word</div>
+
+    <script>
+      let hello = document.querySelector('#hello')
+
+      hello.outerHTML = '<h1>A new element</h1>'
+
+      alert(hello.outerHTML)
+    </script>
+
+  </body>
+</html>
