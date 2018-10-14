@@ -1,0 +1,36 @@
+<html>
+  <head>
+    <style>
+      body {
+        background-color: #ddd;
+      }
+    </style>
+  </head>
+  <body class="main page">
+    <script>
+      alert(document.body.className)
+      for (let name of document.body.classList) {
+        alert(name)
+      }
+    </script>
+
+    <div id="div">Button</div>
+
+    <script>
+      div.style.cssText = `color: red; background-color: blue;`
+    </script>
+
+    <script>
+      // document.body.style.margin = '20vw'
+      document.body.style.margin = '20px 30px 10px 25px'
+
+      alert(document.body.style.marginTop)
+      alert(document.body.style.marginRight)
+    </script>
+
+    <script>
+      alert(document.body.style.backgroundColor)
+      alert(getComputedStyle(document.body).backgroundColor)
+    </script>
+  </body>
+</html>

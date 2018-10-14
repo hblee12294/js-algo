@@ -1,0 +1,38 @@
+<html>
+  <head>
+    <style>
+      #div {
+        height: 200px;
+        width: 200px;
+        padding: 20px;
+        background: #eee;
+        border: 3px dotted #555;
+        overflow: scroll;
+      }
+
+      .inner {
+        height: 300px;
+        width: 100%;
+        background-color: aquamarine;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="div">
+      <div class="inner"></div>
+    </div>
+
+    <script>
+      let div = document.createElement('div')
+
+      div.style.overflowY = 'scroll'
+      div.width = '50px'
+      div.height = '50px'
+
+      document.body.append(div)
+      let scrollWidth = div.offsetWidth - div.clientWidth
+      alert(scrollWidth)
+    </script>
+  </body>
+</html>

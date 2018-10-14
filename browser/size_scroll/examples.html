@@ -1,0 +1,39 @@
+<html>
+  <style>
+    /* #example {
+      width: 300px;
+      height: 200px;
+      border: 25px solid #e8c48f;
+      padding: 20px;
+      overflow: auto;
+    } */
+  </style>
+
+  <body>
+    <!-- <div id="example">
+      ...Text...
+    </div> -->
+
+    <main style="position: relative" id="main">
+      <article>
+        <div id="example" style="position: absolute; left: 180px; top: 180px">...</div>
+      </article>
+    </main>
+
+    <script>
+      alert(example.offsetParent.id)
+
+      alert(example.offsetTop)
+      alert(example.offsetLeft)
+
+      alert(example.offsetWidth)
+      alert(example.offsetHeight)
+
+      alert(example.clientWidth)
+      alert(example.clientHeight)
+
+      alert(example.scrollTop)
+      alert(example.scrollHeight)
+    </script>
+  </body>
+</html>

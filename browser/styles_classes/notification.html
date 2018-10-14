@@ -1,0 +1,26 @@
+<html>
+  <body>
+    <div id="notification" style="display: none; position: fixed; padding: 5px 10px; background-color: olivedrab; color: #fff;">
+    </div>
+
+    <script>
+      function showNotification({ top, right, html, className }) {
+        let noti = document.getElementById('notification')
+        noti.style.top = top + 'px'
+        noti.style.right = right + 'px'
+        noti.innerHTML = html
+        noti.style.className += ' ' + className
+
+        noti.style.display = 'block'
+        setTimeout(() => noti.style.display = 'none', 1500)
+      }
+
+      showNotification({
+        top: 10,
+        right: 10,
+        html: 'hello',
+        className: 'welcome'
+      })
+    </script>
+  </body>
+</html>

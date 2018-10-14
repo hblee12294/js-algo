@@ -1,0 +1,25 @@
+<html>
+  <head>
+    <style>
+      #div {
+        width: 50%;
+        height: 50%;
+        background-color: #eee;
+        font-size: 2rem;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="div">
+      TEXT TEXT TEXT TEXT
+    </div>
+
+    <script>
+      let div = document.getElementById('div')
+
+      alert('scroll-bottom: ' + (div.scrollHeight - div.scrollTop - div.offsetHeight) + 'px')
+    </script>
+  </body>
+</html>
