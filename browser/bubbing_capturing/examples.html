@@ -1,0 +1,27 @@
+<html>
+  <body>
+    <!-- <div onclick="alert('The handler!')">
+      <em>If you click on <code>EM</code>, the handler on <code>Div</code> runs.</em>
+    </div> -->
+
+    <style>
+        body * {
+          margin: 10px;
+          border: 1px solid blue;
+        }
+      </style>
+      
+      <form>FORM
+        <div>DIV
+          <p>P</p>
+        </div>
+      </form>
+      
+      <script>
+        for(let elem of document.querySelectorAll('*')) {
+          elem.addEventListener("click", e => alert(`Capturing: ${elem.tagName}`), true);
+          elem.addEventListener("click", e => alert(`Bubbling: ${elem.tagName}`));
+        }
+      </script>
+  </body>
+</html>

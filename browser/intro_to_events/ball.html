@@ -1,0 +1,62 @@
+
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <style>
+    #field {
+      width: 200px;
+      height: 150px;
+      border: 10px solid black;
+      background-color: #00FF00;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    #ball {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 40px;
+      height: 40px;
+      transition: all 1s;
+    }
+  </style>
+</head>
+
+<body style="height:2000px">
+
+  Click on a field to move the ball there.
+  <br>
+
+
+  <div id="field">
+    <img src="https://en.js.cx/clipart/ball.svg" id="ball"> . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+  </div>
+
+  <script>
+    let field = document.getElementById('field')
+    let ball = document.getElementById('ball')
+    let rect = field.getBoundingClientRect()
+
+    field.onclick = function (event) {
+      let left = event.clientX - rect.left - field.clientLeft - ball.offsetWidth / 2
+      if (left < 0) left = 0
+
+      if (left + ball.offsetWidth > field.clientWidth) left = field.clientWidth - ball.offsetWidth
+
+      let top = event.clientY - rect.top - field.clientTop - ball.offsetHeight / 2
+      if (top < 0) top = 0
+
+      if (top + ball.offsetHeight > field.clientHeight) top = field.clientHeight - ball.offsetHeight
+
+      ball.style.left = left + 'px'
+      ball.style.top = top + 'px'
+    }
+  </script>
+
+</body>
+</html>
