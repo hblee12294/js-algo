@@ -1,0 +1,25 @@
+<html>
+  <body>
+    <button>Right-click for browser context menu</button>
+
+    <button oncontextmenu="alert('Draw our menu'); return false">
+      Right-click for our context menu
+    </button>
+
+    <p>Right-click for the document menu</p>
+    <button id="elem">Right-click for the button menu (fixed with event.stopPropagation)</button>
+
+    <script>
+      elem.oncontextmenu = function(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        alert("Button context menu");
+      };
+
+      document.oncontextmenu = function(event) {
+        event.preventDefault();
+        alert("Document context menu");
+      };
+    </script>
+  </body>
+</html>
