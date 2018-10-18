@@ -1,0 +1,55 @@
+<html>
+  <head>
+    <style>
+      .user {
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        width: 500px;
+      }
+
+      .user::after {
+        content: 'x';
+        position: absolute;
+        top: 5px;
+        right: 5px;
+      }
+
+      .fake_img {
+        display: inline-block;
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        background-color: #797979;
+      }
+
+      .name {
+        font-weight: bold;
+      }
+
+      .more {
+        align-self: flex-end;
+      }
+    </style>
+
+  </head>
+  <body>
+    <h5>People you may know</h5>
+    <p class="users">
+      <div class="user">
+        <div class="avartar">
+          <span class="fake_img"></span>
+        </div>
+        <div class="info">
+          <div>
+            <span class="name">Hongbin Li</span>
+            <span class="title">Front end engineer</span>
+          </div>
+          <span>+<a href="">connect</a></span>
+        </div>
+        <div class="more">See more >>></div>
+      </div>
+    </p>
+  </body>
+</html> 

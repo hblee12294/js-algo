@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Sample Title</title>
+</head>
+<body>
+  Countdown Timer
+  <div id="container">
+    <!-- This element's contents will be replaced with your component. -->
+    <div id="countdown-timer" style="margin-bottom:20px; font-size: 22px; color: red">
+        <span class="hour"></span>:<span class="minute"></span>:<span class="second"></span>
+    </div>
+    <div class="buttons">
+      <button id="start">Start</button>
+      <button id="stop">Stop</button>
+      <button id="reset">Reset</button>
+    </div>
+  </div>
+
+  <script>
+    let hourEle = document.querySelector('.hour')
+    let minuteEle = document.querySelector('.minute')
+    let secondEle = document.querySelector('.second')
+
+    class Timer {
+      constructor(hour = 0, minute = 0, second = 5, elHour, elMinute, elSecond) {
+        this._timestamp = hour * 60 * 60 + minute * 60 + second
+        this._oriTimestamp = this._timestamp
+        this._timerId = null
+
+        this._elHour = elHour
+        this._elMinute = elMinute
+        this._elSecond = elSecond
+
+        this.displayHMS()
+      }
+
+      displayHMS () {
+        let hour = Math.trunc(this._timestamp / 3600)
+        let minute = Math.trunc((this._timestamp - hour * 60 * 60) / 60)
+        let second = (this._timestamp - hour * 60 * 60 - minute * 60)
+    
+        this._elHour.innerHTML = hour < 10 ? '0' + hour : hour
+        this._elMinute.innerHTML = minute < 10 ? '0' + minute : minute
+        this._elSecond.innerHTML = second < 10 ? '0' + second : second
+      }
+      
+      start () {
+        this._timerId = setInterval(() => {
+          if (this._timestamp <= 0) {
+            clearInterval(this.timerId)
+            return
+          }
+          --this._timestamp
+          this.displayHMS()
+        }, 1000)
+      }
+      
+      stop() {
+        clearInterval(this._timerId)
+        this._timerId = null
+      }
+
+      reset() {
+        this.stop()
+        this._timestamp = this._oriTimestamp
+        this.displayHMS()
+      }
+    }
+  
+  let timer = new Timer(0, 1, 5, hourEle, minuteEle, secondEle)
+
+  document.getElementById('start').addEventListener('click', () => timer.start())
+  document.getElementById('stop').addEventListener('click', () => timer.stop())
+  document.getElementById('reset').addEventListener('click', () => timer.reset())
+  </script>
+</body>
+</html>
