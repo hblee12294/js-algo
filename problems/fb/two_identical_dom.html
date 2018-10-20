@@ -1,0 +1,57 @@
+<html>
+  <body>
+    <div id="dom1">
+      <h1>Title</h1>
+      <p>Content</p>
+      <ul>
+        <li>Item 1</li>
+        <li id="target">Item 2 in Dom 1</li>
+        <li>Item 3</li>
+      </ul>
+    </div>
+
+    <div id="dom2">
+      <h1>Title</h1>
+      <p>Content</p>
+      <ul>
+        <li>Item 1</li>
+        <li>Item 2 in Dom 2</li>
+        <li>Item 3</li>
+      </ul>
+    </div>
+
+    <script>
+      const target  = document.getElementById('target')
+      const roota = document.getElementById('dom1')
+      const rootb = document.getElementById('dom2')
+
+      function findNode(target, roota, rootb) {
+        const path = []
+
+        function goUp(ele) {
+          if (ele === roota ) return
+
+          if (ele.previousElementSibling) {
+            path.push('sibling')
+            goUp(ele.previousElementSibling)
+          } else {
+            path.push('parent')
+            goUp(ele.parentElement)
+          }
+        }
+
+        goUp(target)
+
+        function goDown(ele) {
+          if (!path.length) return ele
+
+          return path.pop() === 'parent' ? goDown(ele.firstElementChild) : goDown(ele.nextElementSibling)
+        }
+
+        return goDown(rootb)
+      }
+
+      console.log(findNode(target, roota, rootb))
+    </script>
+  </body>
+</html>
