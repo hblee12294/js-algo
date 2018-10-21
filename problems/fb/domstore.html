@@ -1,0 +1,79 @@
+
+<!-- const el = document.getElementById('my-element')
+DOMStore.set(el, 'chandler)
+DOMStore.get(el)
+DOMStore.has(el) -->
+
+<html>
+  <body>
+    <div id="my-element">
+      <h3 id="title">Title</h3>
+      <ul>
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+      </ul>
+      <button>Submit</button>
+    </div>
+
+    <script>
+      const el = document.getElementById('my-element')
+      const title = document.getElementById('title')
+
+      // instance of class
+      // class DOMStoreClass {
+      //   constructor() {
+      //     this._store = new Map()
+      //   }
+
+      //   set(el, data) {
+      //     return this._store.set(el, data)
+      //   }
+
+      //   get(el) {
+      //     return this._store.get(el)
+      //   }
+
+      //   has(el) {
+      //     return this._store.has(el)
+      //   }
+      // }
+
+      // const DOMStore = new DOMStoreClass()
+
+      // static methods
+      class DOMStore {
+        static set(el, data) {
+          this._store || (this._store = new Map())
+          return this._store.set(el, data)
+        }
+
+        static get(el) {
+          return this._store.get(el)
+        }
+
+        static has(el) {
+          return this._store.has(el)
+        }
+
+        // static whoIAm() {
+        //   console.log(this)
+        // }
+      }
+
+      // DOMStore._store = new Map()
+
+
+      DOMStore.set(el, 'hongbin')
+      console.log(DOMStore.has(el))
+      console.log(DOMStore.get(el))
+      
+      DOMStore.set(title, 'list')
+      console.log(DOMStore.has(title))
+      console.log(DOMStore.get(title))
+
+      // console.log(DOMStore._store)
+      // DOMStore.whoIAm()
+    </script>
+  </body>
+</html>
