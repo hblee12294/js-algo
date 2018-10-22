@@ -1,0 +1,35 @@
+<!-- 
+  implement layout below with css and js
+
+    |--------------|---------|
+    |              |  image2 |
+    |              |---------|
+    |      image1            |
+    |                        |
+    |----------------------- |
+ -->
+
+
+<html>
+  <head>
+    <style>
+      .wrap {
+        position: relative;
+        display: inline-block;
+      }
+
+      #pic2 {
+        position: absolute;
+        top: 0;
+        right: 0;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="wrap">
+      <img id="pic1" src="img2.jpg" alt="img2">
+      <img id="pic2" src="javascript.png" alt="js">
+    </div>
+  </body>
+</html>
