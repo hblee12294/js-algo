@@ -1,0 +1,59 @@
+<!-- 
+
+    / Mouse is not over the picture
+    +-------------+
+    |             |
+    |             |
+    |   picture   |
+    |             |
+    |             |
+    +-------------+
+
+    +--------+----+.
+    |        |edit| <--- links to /edit.php
+    |        +----+      icon url: /edit_icon.png
+    |   picture   |
+    |             | <--- links to /profile.php
+    |             |      picture url: /profile_pic.png
+    +-------------+
+
+ -->
+
+
+
+<html>
+  <head>
+    <style>
+      .avatar-wrap {
+        position: relative;
+        display: inline-block;
+      }
+
+      .edit {
+        display: none;
+        position: absolute;
+        top: 0;
+        right: 0;
+      }
+
+      .avatar-wrap:hover .edit {
+        display: block;
+      }
+
+      .avatar-wrap:focus .edit {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="avatar-wrap" tabindex="1">
+      <a class="avatar" href="/edit.php"><img src="img_avatar.png" alt="avatar"></a>
+      <a class="edit" href="/edit.php"><img src="javascript.png" alt="edit"></a>
+    </div>
+
+    <script>
+      let anchors = document.getElementsByTagName('a')
+      console.log(anchors) // HTMLCollection
+    </script>
+  </body>
+</html>

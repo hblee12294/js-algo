@@ -68,11 +68,33 @@ General: A closure is a function that remembers its outer variables and can acce
 ## vanila vs framework
 
 
-## difrence between array and object
+## diffrence between array and object
+1. Array is a special kind of object, suited to storing and managin ordered data items.
+2. methods, props
+  Array:
+    push(), pop(), shift(), unshift(), length,
+    splice(), slice(), concat(), indexOf()/lastIndexOf(), find(), findIndex(), includes(), map(), filter(), sort(), reduce(), reverse(), join(), forEach()
+    Array.isArray(), Array.from()
+  Object:
+    obj[key] = value, obj[key], delete obj[key]
 
 
 ## structure of DOM. fp: n nodes, what's the height.
 tree structure
+log(n)
 
 ## event delegation
+Event delegation refers to the process of using event propagation (bubbling) to handle events at a higher level in the DOM than the element on which the event originated. It allows us to attach a single event listener for elements that exist now or in the future.
 
+The algorithm:
+
+Put a single handler on the container.
+In the handler – check the source element event.target.
+If the event happened inside an element that interests us, then handle the event.
+
+## i18n
+Internationalization. It can support local languages without modifying the site.
+
+## accessibility
+html: semantic html, tabindex, accesskey
+css&js: emphasised text, abbreviation, links, WAI-ARIA
