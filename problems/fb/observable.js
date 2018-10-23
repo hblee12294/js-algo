@@ -1,3 +1,0 @@
-// observable
-
-// simple 1
