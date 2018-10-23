@@ -19,6 +19,7 @@ class EventEmitter {
     
     if (listeners && listeners.length) {
       this.listeners.set(label, listeners.filter(value => !(typeof value === 'function' && value === callback) ))
+      return true
     }
 
     return false
