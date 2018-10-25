@@ -1,0 +1,133 @@
+<html>
+  <head>
+    <style>
+      html, body {
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      main {
+        display: flex;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+      }
+
+      .post {
+        box-sizing: border-box;
+        flex: 0 0 25%;
+        width: 200px;
+        padding: .5rem;
+        box-shadow: 0px 0px 5px #ddd;
+      }
+
+      .avatar {
+        min-height: 200px;
+        background-color: #f1f1f1;
+      }
+
+      .action-bar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .like-btn {
+        padding: 0;
+        color: #aaa;
+        cursor: pointer;
+        font-size: 1.5rem;
+        background-color: transparent;
+        border: none;
+      }
+
+      .like-btn:hover {
+        color: rgb(251, 137, 137);
+      }
+
+      .liked .like-btn {
+        color: rgb(214, 54, 54);
+      }
+
+      .likes {
+        padding-top: 3px;
+        color: #aaa;
+        font-size: .8rem;
+      }
+    </style>
+  </head>
+  <body>
+    <main id="main" role="main"></main>
+
+    <template id="template">
+      <section class="post">
+        <div class="avatar"></div>
+        <div class="action-bar">
+          <button class="like-btn">&#9829</button><span class="likes"></span>
+        </div>
+      </section>
+    </template>
+
+    <script>
+      const main = document.getElementById('main')
+      const template = document.getElementById('template')
+
+      data = [
+        { isLiked: false, likes: 2 },
+        { isLiked: false, likes: 5 },
+        { isLiked: true, likes: 10 },
+        { isLiked: false, likes: 34 },
+        { isLiked: false, likes: 4 }
+      ]
+
+      function addListeners() {
+        main.addEventListener('click', function (event) {
+          const target = event.target
+
+          if (target.tagName !== 'BUTTON') return
+
+          const index = target.dataset.index
+          
+          if (data[index].isLiked) {
+            data[index].isLiked = false
+            data[index].likes -= 1
+          } else {
+            data[index].isLiked = true
+            data[index].likes += 1
+          }
+          updatePost(index)
+        })
+      }
+
+      function appendPosts() {
+        const frag = document.createDocumentFragment()
+
+        data.forEach((item, index) => {
+          const post = document.importNode(template.content, true)
+          post.querySelector('.likes').textContent = `${ item.likes } likes`
+          frag.append(post)
+        })
+
+        main.append(frag)
+        addStatus()
+        addListeners()
+      }
+
+      function addStatus() {
+        const posts = document.getElementsByClassName('post')
+
+        for (let i = 0; i < posts.length; ++i) {
+          data[i].isLiked && posts[i].classList.add('liked')
+          posts[i].querySelector('button').dataset.index = i
+        }
+      }
+
+      function updatePost(index) {
+        const posts = document.getElementsByClassName('post')
+
+        data[index].isLiked ? posts[index].classList.add('liked') : posts[index].classList.remove('liked')
+        posts[index].querySelector('.likes').textContent = data[index].likes + ' likes'
+      }
+
+      appendPosts()
+    </script>
+  </body>
+</html>
