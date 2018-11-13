@@ -1,0 +1,69 @@
+<html>
+  <body>
+    <button id="btn">Click to load</button>
+    <button id="btn2">Click to cause error</button>
+    <button id="btn3">Click to load (Promise)</button>
+    <button id="btn4">Click to cause error (Promise)</button>
+    <script>
+      const btn = document.getElementById('btn')
+      const btn2 = document.getElementById('btn2')
+      const btn3 = document.getElementById('btn3')
+      const btn4 = document.getElementById('btn4')
+
+      btn.addEventListener('click', () => {
+        loadScript('./cb.js', onLoadCB)
+      })
+
+      btn2.addEventListener('click', () => {
+        loadScript('./cb2.js', onLoadCB)
+      })
+
+      btn3.addEventListener('click', () => {
+        let promise = loadScript2('./cb.js')
+        promise.then(
+          script => alert('Loaded successful'),
+          error => alert(error)
+        )
+      })
+
+      btn4.addEventListener('click', () => {
+        let promise = loadScript2('./cb2.js')
+        promise.then(
+          script => alert('Loaded successful'),
+          error => alert(error)
+        )
+      })
+
+      function loadScript(src, cb) {
+        const script = document.createElement('script')
+        script.src = src
+
+        script.onload = () => cb(null, script)
+        script.onerror = () => cb(new Error('Script load wrong from ' + src), script)
+        document.head.append(script)
+      }
+
+      // error-first-callback
+      function onLoadCB(error, script) {
+        if (error) {
+          console.log(error)
+        } else {
+          alert('Script loaded')
+        }
+      }
+
+      function loadScript2(src) {
+        return new Promise(function(resolve, reject) {
+          let script = document.createElement('script')
+          script.src = src
+
+          script.onload = () => resolve(script)
+          script.onerror = () => reject(new Error('Load fails'))
+
+          document.head.append(script)
+        })
+      }
+
+    </script>
+  </body>
+</html>
