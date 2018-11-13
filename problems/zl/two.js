@@ -1,0 +1,1 @@
+const two = () => alert(2)

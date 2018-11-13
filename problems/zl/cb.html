@@ -4,11 +4,14 @@
     <button id="btn2">Click to cause error</button>
     <button id="btn3">Click to load (Promise)</button>
     <button id="btn4">Click to cause error (Promise)</button>
+    <button id="btn5">Click to load js in chain</button>
+
     <script>
       const btn = document.getElementById('btn')
       const btn2 = document.getElementById('btn2')
       const btn3 = document.getElementById('btn3')
       const btn4 = document.getElementById('btn4')
+      const btn5 = document.getElementById('btn5')
 
       btn.addEventListener('click', () => {
         loadScript('./cb.js', onLoadCB)
@@ -32,6 +35,24 @@
           script => alert('Loaded successful'),
           error => alert(error)
         )
+      })
+
+      btn5.addEventListener('click', () => {
+        loadScript3('./one.js')
+          .then(function (script) {
+            return loadScript3('./two.js')
+          })
+          .then(function (result) {
+            return loadScript3('./three.js')
+          })
+          .then(function () {
+            one()
+            two()
+            three()
+          })
+          .catch(function (error) {
+            alert(error)
+          })
       })
 
       function loadScript(src, cb) {
@@ -59,6 +80,18 @@
 
           script.onload = () => resolve(script)
           script.onerror = () => reject(new Error('Load fails'))
+
+          document.head.append(script)
+        })
+      }
+
+      function loadScript3(src) {
+        return new Promise(function (resolve, reject) {
+          const script = document.createElement('script')
+          script.src = src
+
+          script.onload = () => resolve(script)
+          script.onerror = () => reject(new Error(src + ' error'))
 
           document.head.append(script)
         })

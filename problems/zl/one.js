@@ -1,0 +1,1 @@
+const one = () => alert(1)
