@@ -1,0 +1,157 @@
+<html>
+  <head>
+    <style>
+      html, body {
+        padding: 0;
+        margin: 0;
+        font-size: 14px;
+      }
+
+      .raw-wrap {
+        border-bottom: 1px solid #e5e5e5;
+      }
+
+      /* Top raw */
+      .top-raw {
+        height: 72px;
+        max-width: 1140px;
+        margin: 0 auto;
+        padding-left: 1.25rem;
+      }
+
+      .logo-slot {
+        position: relative;
+      }
+
+      .logo-link {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 113px;
+        width: 72px;
+        background-color: rgb(70, 223, 250);
+      }
+
+      .logo-link img {
+        width: 50px;
+        height: 62px;
+      }
+
+      .top-raw-inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 100%;
+        margin-left: 72px;
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+      }
+
+      .search {
+        position: relative;
+      }
+
+      .search input {
+        width: 300px;
+        padding: 0.666rem;
+        padding-right: 30px;
+        border: 2px solid #d4d4d4;
+      }
+
+      .search-btn {
+        position: absolute;
+        display: inline-block;
+        top: 50%;
+        right: 0;
+        transform: translate(-50%, -50%);
+        font-style: normal;
+        font-weight: bold;
+        cursor: pointer;
+      }
+
+      .option {
+        display: inline-block;
+        height: 35px;
+        padding: 0 19px;
+        cursor: pointer;
+      }
+
+      .option:not(:last-child) {
+        border-right: 1px solid #e5e5e5;
+      }
+
+      .option span {
+        line-height: 35px;
+      }
+
+      /* Bottom raw */
+      .bottom-raw {
+        max-width: 1140px;
+        margin: 0 auto;
+        padding-left: 1.25rem;
+      }
+
+      .bottom-raw-inner {
+        margin-left: 72px;
+        padding-left: 1.25rem;
+        padding-right: 2.5rem;
+      }
+
+      .menu {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+      }
+
+      .menu-item {
+        padding: 13px 0;
+        margin-right: 20px;
+        line-height: 100%;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="raw-wrap">
+        <div class="top-raw">
+          <div class="logo-slot">
+            <a class="logo-link" href="#">
+              <img src="./Header_Logo.v2.svg" alt="">
+            </a>
+          </div>
+          <div class="top-raw-inner">
+            <div class="search">
+              <input type="text" placeholder="Search for products"><i class="search-btn">O</i>
+            </div>
+            <div class="options">
+              <span class="option"><span>100% Satisfction</span></span>
+              <span class="option"><span>Sell on Zazzle</span></span>
+              <span class="option"><span>Sign in</span></span>
+              <span class="option"><span>Cart</span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="raw-wrap">
+        <div class="bottom-raw">
+          <div class="bottom-raw-inner">
+            <nav class="menu">
+              <div class="menu-item">Create Your Owm</div>
+              <div class="menu-item">Invitations & Cards</div>
+              <div class="menu-item">Clothing & Accessories</div>
+              <div class="menu-item">Weddings</div>
+              <div class="menu-item">Gifts</div>
+              <div class="menu-item">Christmas</div>
+              <div class="menu-item">More</div>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </header>
+  </body>
+</html>
