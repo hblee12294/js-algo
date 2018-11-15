@@ -7,17 +7,42 @@ function processOne(item, cb) {
   }, Math.random() * 1000)
 }
 
-async function processSet(items) {
-  try {
-    for (let item of items) {
-      await new Promise(function (resolve, reject) {
-        processOne(item, resolve)
-      })
-    }
-  } catch(error) {
-    console.log(error)
-  }
+// Async
+// async function processSet(items) {
+//   try {
+//     for (let item of items) {
+//       await new Promise(function (resolve, reject) {
+//         processOne(item, resolve)
+//       })
+//     }
+//   } catch(error) {
+//     console.log(error)
+//   }
 
+// }
+
+// Callback
+// function processSet(items) {
+//   let index = 0
+  
+//   function handle() {
+//     if (index === items.length ) return
+//     processOne(items[index], handle)
+//     index++
+//   }
+  
+//   handle(items[index])
+// }
+
+// Promise
+function processSet(items) {
+  const promises = items.map(item => {
+    return () => new Promise(resolve => processOne(item, resolve))
+  })
+
+  promises.reduce((chain, current) => {
+    return chain.then(current)
+  }, Promise.resolve())
 }
 
 processSet(list)
