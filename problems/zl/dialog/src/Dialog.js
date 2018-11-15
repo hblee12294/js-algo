@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 
+import './Dialog.css'
+
 
 class Dialog extends Component {
   constructor(props) {
@@ -21,7 +23,7 @@ class Dialog extends Component {
       <div className="dialog">
         <div className="body">
           <div className="head"></div>
-          <input type="text"/>
+          <input type="text" ref={ element => this.el = element }/>
           <div className="btn-group">
             <button
               className="submit"

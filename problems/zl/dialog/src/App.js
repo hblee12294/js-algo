@@ -48,10 +48,12 @@ class App extends Component {
           Click to input
         </button>
         <Modal>
-          <Dialog
-            onSubmit={ this.submitHandle }
-            onCancel={ this.cancelHandle }
-          />
+          { this.state.popupShow ? 
+            <Dialog
+              onSubmit={ this.submitHandle }
+              onCancel={ this.cancelHandle }
+            /> : null
+          }
         </Modal>
       </div>
     );
