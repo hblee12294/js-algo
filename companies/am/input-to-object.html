@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head></head>
+
+  <body>
+    <form id="parent">
+      <input type="text" name="foo.bat" />
+      <input type="text" name="foo.bar.baz" />
+      <input type="text" name="fizz" />
+    </form>
+
+    <button id="button">Get Result</button>
+
+    <script>
+      function getValues(id) {
+        const form = document.getElementById(id);
+        const inputElements = form.children;
+        const result = {};
+
+        for (let i = 0; i < inputElements.length; ++i) {
+          const element = inputElements[i];
+          const keys = element.name.split(".");
+          const value = element.value;
+
+          let currentNode = result;
+
+          keys.forEach((key, index) => {
+            if (index === keys.length - 1) {
+              currentNode[key] = value;
+            } else if (!(key in currentNode)) {
+              currentNode[key] = {};
+            }
+
+            currentNode = currentNode[key];
+          });
+        }
+
+        return result;
+      }
+
+      document.getElementById("button").addEventListener("click", () => {
+        const result = getValues("parent");
+
+        console.log(result);
+      });
+    </script>
+  </body>
+</html>
