@@ -1,0 +1,59 @@
+<html>
+  <body>
+    <div style="color: #ffffff">
+      <div style="color: #fff"></div>
+      <div style="color: #000">
+        <p style="color: white"></p>
+        <a href="" style="color: #ff00ff"></a>
+      </div>
+    </div>
+
+    <script>
+      function findAll(attribute, value) {
+        const result = [];
+
+        const dumpElement = document.createElement("div");
+        dumpElement.style[attribute] = value;
+        dumpElement.id = "dump";
+
+        document.body.append(dumpElement);
+        const unifiedValue = window
+          .getComputedStyle(dumpElement)
+          .getPropertyValue(attribute);
+
+        traversal(document.body, (node) => {
+          if (node.id === "dump") return;
+
+          if (
+            window.getComputedStyle(node).getPropertyValue(attribute) ===
+            unifiedValue
+          ) {
+            result.push(node);
+          }
+        });
+
+        console.log(result);
+      }
+
+      function traversal(element, onNode) {
+        const queue = [];
+        queue.push(element);
+
+        while (queue.length) {
+          const size = queue.length;
+
+          for (let i = 0; i < size; ++i) {
+            const node = queue.shift();
+            onNode(node);
+
+            if (node.children.length) {
+              queue.push(...node.children);
+            }
+          }
+        }
+      }
+
+      findAll("color", "#ffffff");
+    </script>
+  </body>
+</html>
