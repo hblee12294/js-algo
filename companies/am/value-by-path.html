@@ -1,0 +1,46 @@
+<html>
+  <head></head>
+
+  <body>
+    <script>
+      function get(object, path) {
+        let paths = path.replaceAll("[", ".").replaceAll("]", "");
+        paths = paths.split(".").filter((path) => path !== "");
+
+        let currentNode = object;
+
+        for (let i = 0; i < paths.length; ++i) {
+          const node = currentNode[getKey(paths[i])];
+
+          if (i === paths.length - 1) {
+            console.log(node);
+            return node;
+          }
+
+          if (node) {
+            currentNode = node;
+          } else {
+            break;
+          }
+        }
+      }
+
+      function getKey(str) {
+        if (str.startsWith("[")) {
+          return parseInt(str.substring(1, str.length - 2));
+        }
+
+        return str;
+      }
+
+      // Tests
+      get({ developer: "Software Engineer" }, "developer"); // => 'Software Engineer'
+      get(
+        { developer: { firstName: "Tom", lastName: "Cruz" } },
+        "developer.lastName"
+      ); //=>'Cruz
+      get([{ developer: "Tom" }, { count: [0, 1] }], "[1].count[0]"); //=>0
+      get([{ developer: "Tom" }, [0, null]], "[1][1]"); //=>null
+    </script>
+  </body>
+</html>
