@@ -1,0 +1,99 @@
+<html>
+  <head>
+    <style>
+      .container {
+        width: 500px;
+        margin: 5rem auto 0;
+        position: relative;
+      }
+
+      .search-bar {
+        border: 1px solid #dddddd;
+        border-radius: 0.6rem;
+        padding: 0.3rem 1rem;
+        width: 100%;
+      }
+
+      .result {
+        position: absolute;
+        top: calc(100% + 0.6rem);
+        width: 100%;
+        border: 1px solid #e0e0e0;
+        border-radius: 1rem;
+        box-shadow: 1px 1px 6px #eee;
+      }
+
+      .result.hidden {
+        display: none;
+      }
+
+      .terms-list {
+        padding: 0.6rem 1rem;
+        margin: 0;
+        list-style: none;
+      }
+
+      .terms-item {
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <form autocomplete="off">
+        <input class="search-bar" id="search" name="search" type="text" />
+      </form>
+      <div id="result" class="result hidden"></div>
+    </div>
+
+    <script>
+      const searchTerms = [
+        "apple",
+        "apple watch",
+        "apple macbook",
+        "apple macbook pro",
+        "iphone",
+        "iphone 12",
+      ];
+
+      const searchInput = document.getElementById("search");
+      const resultElement = document.getElementById("result");
+
+      function inputMatch(input) {
+        const reg = new RegExp(input);
+
+        if (input === "") return [];
+
+        return searchTerms.filter((term) => term.match(reg));
+      }
+
+      function displayResults(terms) {
+        const ul = document.createElement("ul");
+        ul.classList.add("terms-list");
+
+        resultElement.children[0]?.remove();
+
+        if (terms.length) {
+          terms.forEach((term) => {
+            const li = document.createElement("li");
+            li.classList.add("terms-item");
+            li.textContent = term;
+
+            ul.append(li);
+          });
+
+          resultElement.classList.remove("hidden");
+          resultElement.append(ul);
+        } else {
+          resultElement.classList.add("hidden");
+        }
+      }
+
+      searchInput.addEventListener("input", (ev) => {
+        const matchedTerms = inputMatch(ev.target.value);
+
+        displayResults(matchedTerms);
+      });
+    </script>
+  </body>
+</html>
