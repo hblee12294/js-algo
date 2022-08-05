@@ -1,0 +1,27 @@
+<!DOCTYPE >
+<html>
+  <head></head>
+
+  <body>
+    <div id="resultTree"></div>
+
+    <script>
+      const resultTree = document.getElementById("resultTree");
+
+      const input = `<div>
+                      <div>
+                        <a>Test link</a>
+                      </div>
+                      <div>
+                        <p>Test paragraph</p>
+                      </div>
+                    </div>`;
+
+      /* Test */
+      resultTree.innerHTML = input;
+
+      /* Split by new line */
+      console.log(input.split("\n").map((line) => line.trim()));
+    </script>
+  </body>
+</html>
