@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      body {
+        margin: 0;
+      }
+
+      .popup {
+        height: 100vh;
+        width: 100vw;
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .popup.hidden {
+        display: none;
+      }
+
+      .popup-backdrop {
+        height: 100%;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.1);
+      }
+
+      .popup-panel {
+        position: absolute;
+        min-width: 500px;
+        overflow: hidden;
+        border-radius: 10px;
+        background-color: #fff;
+      }
+
+      .popup-header {
+        background-color: #f0f0f0;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 0.5rem 1.2rem;
+      }
+
+      .popup-main {
+        padding: 0.5rem 1.2rem 2rem;
+      }
+
+      .popup-close-btn {
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="btn-group">
+      <button data-index="0">button 1</button>
+      <button data-index="1">button 2</button>
+      <button data-index="2">button 3</button>
+    </div>
+
+    <div class="popup hidden" id="popup">
+      <div class="popup-backdrop" id="popup-backdrop"></div>
+
+      <div class="popup-panel">
+        <div class="popup-header">
+          <div class="popup-header-content" id="popup-header-content"></div>
+          <button class="popup-close-btn" id="popup-close-btn">X</button>
+        </div>
+        <div class="popup-main">
+          <h1 class="title" id="title"></h1>
+          <p class="content" id="content"></p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const data = [
+        {
+          header: "Header 1",
+          title: "Title 1",
+          content: "Content 1",
+        },
+        {
+          header: "Header 2",
+          title: "Title 2",
+          content: "Content 2",
+        },
+        {
+          header: "Header 3",
+          title: "Title 3",
+          content: "Content 3",
+        },
+      ];
+
+      const els = {
+        popup: document.getElementById("popup"),
+        backdrop: document.getElementById("popup-backdrop"),
+        headerContent: document.getElementById("popup-header-content"),
+        closeBtn: document.getElementById("popup-close-btn"),
+        title: document.getElementById("title"),
+        content: document.getElementById("content"),
+        btnGroup: document.getElementById("btn-group"),
+      };
+
+      function onOpenPopup(index) {
+        els.popup.classList.remove("hidden");
+
+        const item = data[index];
+
+        els.headerContent.textContent = item.header;
+        els.title.textContent = item.title;
+        els.content.textContent = item.content;
+      }
+
+      function onClosePopup() {
+        els.popup.classList.add("hidden");
+
+        els.headerContent.textContent = "";
+        els.title.textContent = "";
+        els.content.textContent = "";
+      }
+
+      els.btnGroup.addEventListener("click", (ev) => {
+        if (ev.target === els.btnGroup) return;
+
+        onOpenPopup(parseInt(ev.target.dataset["index"]));
+      });
+      els.closeBtn.addEventListener("click", onClosePopup);
+      els.backdrop.addEventListener("click", onClosePopup);
+    </script>
+  </body>
+</html>
