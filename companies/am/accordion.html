@@ -1,0 +1,138 @@
+<html>
+  <head>
+    <style>
+      .container {
+        display: flex;
+        justify-content: center;
+        padding: 5rem;
+      }
+
+      .accordion {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        min-width: 500px;
+      }
+
+      .accd-item {
+        border-top: 1px solid #ddd;
+      }
+
+      .accd-item:last-of-type {
+        border-bottom: 1px solid #ddd;
+      }
+
+      .accd-title {
+        margin: 0;
+        padding: 0.8rem 1rem;
+        cursor: pointer;
+        position: relative;
+      }
+
+      .accd-title::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        right: 1rem;
+        height: 0.4rem;
+        width: 0.4rem;
+        border-width: 2px;
+        border-style: solid;
+        border-color: #ccc #ccc transparent transparent;
+        transform: translateY(-50%) rotate(45deg);
+        transition-duration: 0;
+      }
+
+      .active .accd-title::before {
+        transform: translateY(-50%) rotate(135deg);
+        transition-duration: 0.3s;
+      }
+
+      .accd-content {
+        box-sizing: border-box;
+        max-height: 0;
+        overflow: hidden;
+        transition-duration: 0;
+        transition-timing-function: linear;
+      }
+
+      .accd-content-wrap {
+        padding: 0rem 1rem 1rem;
+      }
+
+      .active .accd-content {
+        max-height: 50px;
+        transition-duration: 0.5s;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <ul id="root" class="accordion"></ul>
+    </div>
+
+    <script>
+      const data = [
+        {
+          title: "title 1",
+          content: "content 1",
+        },
+        {
+          title: "title 2",
+          content: "content 1",
+        },
+        {
+          title: "title 3",
+          content: "content 1",
+        },
+      ];
+
+      const root = document.getElementById("root");
+      const accdItems = [];
+
+      data.forEach((item, index) => {
+        const accdItem = document.createElement("li");
+        accdItem.className = "accd-item";
+
+        const accdTitle = document.createElement("h4");
+        accdTitle.className = "accd-title";
+        accdTitle.textContent = item.title;
+        accdTitle.setAttribute("data-index", index);
+        accdItem.append(accdTitle);
+
+        const accdContent = document.createElement("div");
+        accdContent.className = "accd-content";
+
+        const accdContentWrap = document.createElement("div");
+        accdContentWrap.className = "accd-content-wrap";
+        accdContentWrap.textContent = item.content;
+        accdContent.append(accdContentWrap);
+
+        accdItem.append(accdContent);
+
+        root.append(accdItem);
+        accdItems.push(accdItem);
+      });
+
+      function setActiveItem(activeIndex) {
+        accdItems.forEach((item, index) => {
+          if (index === activeIndex) {
+            item.classList.add("active");
+          } else {
+            item.classList.remove("active");
+          }
+        });
+      }
+
+      root.addEventListener("click", (ev) => {
+        if (!ev.target.dataset["index"]) return;
+
+        const index = parseInt(ev.target.dataset["index"]);
+        setActiveItem(index);
+      });
+
+      // setActiveItem(0);
+    </script>
+  </body>
+</html>
