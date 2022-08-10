@@ -1,0 +1,66 @@
+<html>
+  <head>
+    <style>
+      .container {
+        padding: 5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .rate {
+        display: flex;
+        flex-direction: row-reverse;
+      }
+
+      .trigger {
+        display: none;
+      }
+
+      .star {
+        display: inline-block;
+      }
+
+      .star::after {
+        content: "\2605";
+        font-size: 30px;
+        color: #eee;
+        transition: 0.5s color;
+        cursor: pointer;
+      }
+
+      .star:hover::after {
+        color: #f0f0aa;
+      }
+
+      .star:hover ~ .star::after {
+        color: #f0f0aa;
+      }
+
+      .trigger:checked ~ .star::after {
+        color: #f0f000;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="rate">
+        <input id="5" class="trigger" type="radio" name="rate" />
+        <label for="5" class="star"> </label>
+
+        <input id="4" class="trigger" type="radio" name="rate" />
+        <label for="4" class="star"> </label>
+
+        <input id="3" class="trigger" type="radio" name="rate" />
+        <label for="3" class="star"> </label>
+
+        <input id="2" class="trigger" type="radio" name="rate" />
+        <label for="2" class="star"> </label>
+
+        <input id="1" class="trigger" type="radio" name="rate" />
+        <label for="1" class="star"> </label>
+      </div>
+    </div>
+  </body>
+</html>
