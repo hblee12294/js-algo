@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+
+    <style>
+      .carousel {
+        padding: 0 2rem;
+        position: relative;
+      }
+
+      .arrow {
+        position: absolute;
+        top: 50%;
+        transform: translate(0, -50%);
+      }
+
+      .prev {
+        left: 0;
+      }
+
+      .next {
+        right: 0;
+      }
+
+      .gallery {
+        overflow: hidden;
+      }
+
+      .gallery-list {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        display: grid;
+        grid-auto-flow: column;
+        transform: translateX(0px);
+        transition: 0.3s transform;
+      }
+
+      .gallery-item {
+        display: inline-block;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: calc(var(--item-width) * 1px);
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="carousel" class="carousel">
+      <button class="arrow prev" data-direction="prev">⇦</button>
+      <button class="arrow next" data-direction="next">⇨</button>
+
+      <div id="gallery" class="gallery">
+        <ul id="gallery-list" class="gallery-list">
+          <li class="gallery-item">
+            <img src="https://en.js.cx/carousel/1.png" />
+          </li>
+          <li class="gallery-item">
+            <img src="https://en.js.cx/carousel/2.png" />
+          </li>
+          <li class="gallery-item">
+            <img src="https://en.js.cx/carousel/3.png" />
+          </li>
+          <li class="gallery-item">
+            <img src="https://en.js.cx/carousel/4.png" />
+          </li>
+          <li class="gallery-item">
+            <img src="https://en.js.cx/carousel/5.png" />
+          </li>
+          <li class="gallery-item">
+            <img src="https://en.js.cx/carousel/6.png" />
+          </li>
+          <li class="gallery-item">
+            <img src="https://en.js.cx/carousel/7.png" />
+          </li>
+          <li class="gallery-item">
+            <img src="https://en.js.cx/carousel/8.png" />
+          </li>
+          <li class="gallery-item">
+            <img src="https://en.js.cx/carousel/9.png" />
+          </li>
+          <li class="gallery-item">
+            <img src="https://en.js.cx/carousel/10.png" />
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <script>
+      const carousel = document.getElementById("carousel");
+      const gallery = document.getElementById("gallery");
+      const list = document.getElementById("gallery-list");
+
+      let index = 0;
+      const total = list.children.length;
+      const items = Math.min(2, total);
+      const scrollItems = Math.min(3, items);
+
+      let itemWidth = gallery.clientWidth / items;
+      carousel.style.setProperty("--item-width", itemWidth);
+
+      carousel.addEventListener("click", (ev) => {
+        const target = ev.target;
+
+        if (target.dataset.direction) {
+          let offset = 0;
+
+          if (target.dataset.direction === "next") {
+            index = Math.min(total - items, index + scrollItems);
+          } else if (target.dataset.direction === "prev") {
+            index = Math.max(0, index - scrollItems);
+          }
+
+          offset = -index * itemWidth;
+
+          list.style.setProperty("transform", `translateX(${offset}px)`);
+        }
+      });
+
+      window.addEventListener("resize", () => {
+        itemWidth = gallery.clientWidth / items;
+        carousel.style.setProperty("--item-width", itemWidth);
+
+        let offset = 0;
+        offset = -index * itemWidth;
+
+        list.style.setProperty("transform", `translateX(${offset}px)`);
+      });
+    </script>
+  </body>
+</html>
