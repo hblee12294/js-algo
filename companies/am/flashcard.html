@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <style>
+      .container {
+        padding: 5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .card {
+        width: 300px;
+        height: 500px;
+      }
+
+      .card-inner {
+        position: relative;
+        height: 100%;
+        width: 100%;
+        transform-style: preserve-3d;
+      }
+
+      .card-front,
+      .card-back {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        backface-visibility: hidden;
+        transition: 0.3s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 30px;
+        font-weight: bold;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+      }
+
+      .card-front {
+        background-color: #f0f0f0;
+      }
+
+      .card-back {
+        transform: rotateY(180deg);
+        background-color: #202020;
+        color: #fff;
+      }
+
+      .card:hover .card-front {
+        transform: rotateY(180deg);
+      }
+
+      .card:hover .card-back {
+        transform: rotateY(0deg);
+      }
+    </style>
+  </head>
+
+  <body>
+    <template id="cardTemplate">
+      <div class="card">
+        <div class="card-inner">
+          <div class="card-front">front</div>
+          <div class="card-back">back</div>
+        </div>
+      </div>
+    </template>
+
+    <div id="root" class="container"></div>
+
+    <script>
+      const cardTemplate = document.getElementById("cardTemplate");
+      console.dir(cardTemplate);
+
+      for (let i = 0; i < 2; ++i) {
+        const card = cardTemplate.content.cloneNode(true);
+
+        root.append(card);
+      }
+    </script>
+  </body>
+</html>
