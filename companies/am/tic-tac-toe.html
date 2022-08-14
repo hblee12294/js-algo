@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <style>
+      .container {
+        padding: 5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.5rem;
+      }
+
+      .grid-item {
+        width: 100px;
+        height: 100px;
+        background-color: #f0f0f0;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: bold;
+        font-size: 20px;
+      }
+
+      .grid-item.p0::before {
+        content: "x";
+      }
+
+      .grid-item.p1::before {
+        content: "o";
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <div id="grid" class="grid"></div>
+    </div>
+
+    <script>
+      const grid = document.getElementById("grid");
+
+      let status = [];
+
+      for (let i = 0; i < 9; ++i) {
+        const gridItem = document.createElement("div");
+        gridItem.className = "grid-item";
+        gridItem.setAttribute("data-index", i);
+
+        status.push(null);
+
+        grid.append(gridItem);
+      }
+
+      let currentPlayer = 0;
+
+      grid.addEventListener("click", (ev) => {
+        const target = ev.target;
+        const index = ev.target.dataset["index"];
+
+        if (target.className.includes("x") || target.className.includes("o"))
+          return;
+
+        if (typeof index === "string") {
+          status[index] = currentPlayer;
+          target.classList.add(`p${currentPlayer}`);
+
+          if (validateWin(currentPlayer)) {
+            console.log(`${currentPlayer} wins`);
+          }
+
+          if (status.filter((item) => item === null).length === 0) {
+            console.log(`no win`);
+          }
+
+          currentPlayer = currentPlayer === 0 ? 1 : 0;
+        }
+      });
+
+      const winConditions = [
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
+        [0, 4, 8],
+        [2, 4, 6],
+      ];
+
+      function validateWin(player) {
+        for (let i = 0; i < winConditions.length; ++i) {
+          const conditions = winConditions[i];
+
+          let win = true;
+          for (const condition of conditions) {
+            if (status[condition] != player) {
+              win = false;
+              break;
+            }
+          }
+
+          if (win) {
+            return true;
+          }
+        }
+
+        return false;
+      }
+    </script>
+  </body>
+</html>
