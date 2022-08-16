@@ -2,29 +2,7 @@
 // A pair of integers define a range, for example: [1, 5). This range includes integers: 1, 2, 3, and 4.
 // A range list is an aggregate of these ranges: [1, 5), [10, 11), [100, 201)
 
-/**
- * NOTE: Feel free to add any extra member variables/functions you like.
- */
-
-/* Untilities */
-
-function validateRange(range) {
-  const validatedRange = [];
-
-  for (const item of range) {
-    if (Number.isInteger(item)) {
-      validatedRange.push(item);
-    } else {
-      throw new Error(
-        `Range items must be integers! (Received: ${typeof item} ${item})`
-      );
-    }
-  }
-
-  return validatedRange.sort((a, b) => a - b);
-}
-
-/* RangeList */
+import { validateRange } from "./utils";
 
 class RangeList {
   ranges = [];
@@ -37,7 +15,6 @@ class RangeList {
     let targetRange = validateRange(range);
 
     const resultRanges = [];
-    const [start, end] = targetRange;
 
     // The loop process is to transform the targetRange and
     // keep replacing or inserting before the current range until
@@ -50,6 +27,7 @@ class RangeList {
         continue;
       }
 
+      const [start, end] = targetRange;
       const [currentStart, currentEnd] = currentRange;
 
       if (end < currentStart) {
@@ -153,49 +131,9 @@ class RangeList {
     );
 
     console.log(result);
+
+    return result;
   }
 }
 
-// Example run
-
-const rl = new RangeList();
-
-rl.add([1, 5]);
-rl.print();
-// Should display: [1, 5)
-
-rl.add([10, 20]);
-rl.print();
-// Should display: [1, 5) [10, 20)
-
-rl.add([20, 20]);
-rl.print();
-// Should display: [1, 5) [10, 20)
-
-rl.add([20, 21]);
-rl.print();
-// Should display: [1, 5) [10, 21)
-
-rl.add([2, 4]);
-rl.print();
-// Should display: [1, 5) [10, 21)
-
-rl.add([3, 8]);
-rl.print();
-// Should display: [1, 8) [10, 21)
-
-rl.remove([10, 10]);
-rl.print();
-// Should display: [1, 8) [10, 21)
-
-rl.remove([10, 11]);
-rl.print();
-// Should display: [1, 8) [11, 21)
-
-rl.remove([15, 17]);
-rl.print();
-// Should display: [1, 8) [11, 15) [17, 21)
-
-rl.remove([3, 19]);
-rl.print();
-// Should display: [1, 3) [19, 21)
+export { RangeList };

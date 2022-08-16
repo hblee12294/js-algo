@@ -1,0 +1,16 @@
+{
+  "name": "rangelist",
+  "description": "A RangeList implementation",
+  "author": "Hongbin Li <hblee12294@gmail.com>",
+  "version": "1.0.0",
+  "private": true,
+  "main": "src/index.js",
+  "license": "UNLICENSED",
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.18.10",
+    "jest": "^28.1.3"
+  }
+}
