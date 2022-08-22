@@ -4,44 +4,52 @@
  */
 
 // Divde & Conquer
-const inorderTraversal = root => {
+const inorderTraversal = (root) => {
   // write your code here
-  const result = []
+  const result = [];
 
   if (!root) {
-    return []
+    return [];
   }
 
-  const left = inorderTraversal(root.left)
-  const right = inorderTraversal(root.right)
+  const left = inorderTraversal(root.left);
+  const right = inorderTraversal(root.right);
 
-  result.push(...left)
-  result.push(root.value)
-  result.push(...right)
+  result.push(...left);
+  result.push(root.value);
+  result.push(...right);
 
-  return result
-}
+  return result;
+};
 
 // Traverse
-const inorderTraversal2 = root => {
-  const stack = []
-  const result = []
-  let currentNode = root
+const inorderTraversal2 = (root) => {
+  const stack = [];
+  const result = [];
+  let currentNode = root;
 
   while (currentNode || stack.length) {
     // Most left node
     while (currentNode) {
-      stack.push(currentNode)
-      currentNode = currentNode.left
+      stack.push(currentNode);
+      currentNode = currentNode.left;
     }
 
-    currentNode = stack.pop()
-    result.push(currentNode.value)
-    currentNode = currentNode.right
+    currentNode = stack.pop();
+    result.push(currentNode.value);
+    currentNode = currentNode.right;
   }
 
-  return result
-}
+  return result;
+};
+
+const inorderTraversal3 = (root) => {
+  if (!root) return;
+
+  inorderTraversal3(root.left);
+  console.log(root.value);
+  inorderTraversal3(root.right);
+};
 
 const tree = {
   value: 1,
@@ -71,7 +79,8 @@ const tree = {
       right: null,
     },
   },
-}
+};
 
-console.log(inorderTraversal(tree))
-console.log(inorderTraversal2(tree))
+console.log(inorderTraversal(tree));
+console.log(inorderTraversal2(tree));
+inorderTraversal3(tree);

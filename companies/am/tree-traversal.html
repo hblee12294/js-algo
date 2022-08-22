@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+  <head> </head>
+
+  <body>
+    <ul id="root">
+      <li>
+        Animals
+        <ul>
+          <li>
+            Mammals
+            <ul>
+              <li>Cows</li>
+              <li>Donkeys</li>
+              <li>Dogs</li>
+              <li>Tigers</li>
+            </ul>
+          </li>
+          <li>
+            Other
+            <ul>
+              <li>Snakes</li>
+              <li>Birds</li>
+              <li>Lizards</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        Fishes
+        <ul>
+          <li>
+            Aquarium
+            <ul>
+              <li>Guppy</li>
+              <li>Angelfish</li>
+            </ul>
+          </li>
+          <li>
+            Sea
+            <ul>
+              <li>Sea trout</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+    <div id="root2" class="node_0">
+      0
+      <div class="node_1">
+        1
+        <div class="node_1_1">1_1</div>
+        <div class="node_1_2">1_2</div>
+        <div class="node_1_3">1_3</div>
+      </div>
+      <div class="node_2">
+        2
+        <div class="node_2_1">2_1</div>
+        <div class="node_2_2">2_2</div>
+      </div>
+      <div class="node_3">3</div>
+    </div>
+
+    <script>
+      const root = document.getElementById("root");
+
+      function levelTraverseMixedTree(root) {
+        const result = [];
+        const queue = [];
+
+        queue.push(root);
+
+        while (queue.length) {
+          const level = [];
+          const size = queue.length;
+
+          for (let i = 0; i < size; ++i) {
+            const head = queue.shift();
+
+            if (head.tagName === "UL") {
+              queue.push(...head.children);
+            } else if (head.tagName === "LI") {
+              const firstChild = head.firstChild;
+              level.push(firstChild.textContent.replaceAll("\n", "").trim());
+
+              const secondChild = head.childNodes[1];
+
+              if (secondChild) {
+                queue.push(secondChild);
+              }
+            }
+          }
+
+          if (level.length) {
+            result.push(level);
+          }
+        }
+
+        return result;
+      }
+
+      console.log(levelTraverseMixedTree(root));
+
+      const root2 = document.getElementById("root2");
+
+      function bfsTree(root, onElement) {
+        const queue = [];
+
+        queue.push(root);
+
+        while (queue.length) {
+          const headElement = queue.shift();
+
+          onElement(headElement);
+
+          for (const element of headElement.children) {
+            queue.push(element);
+          }
+        }
+      }
+
+      const bfsResult = [];
+      bfsTree(root2, (element) => {
+        // bfsResult.push(element.className);
+        bfsResult.push(
+          element.childNodes[0].textContent.replaceAll("\n", "").trim()
+        );
+      });
+
+      console.log(bfsResult);
+
+      function dfsTree(root, onElement) {
+        const stack = [];
+
+        stack.push(root);
+
+        while (stack.length) {
+          const topElement = stack.pop();
+
+          onElement(topElement);
+
+          stack.push(...Array.from(topElement.children).reverse());
+        }
+      }
+
+      const dfsResult = [];
+      dfsTree(root2, (element) => {
+        dfsResult.push(
+          element.childNodes[0].textContent.replaceAll("\n", "").trim()
+        );
+      });
+
+      console.log(dfsResult);
+    </script>
+  </body>
+</html>

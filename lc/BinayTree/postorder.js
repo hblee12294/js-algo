@@ -62,7 +62,7 @@ const tree = {
     right: {
       value: 5,
       left: null,
-      right: null,
+      right: null, 
     },
   },
   right: {
