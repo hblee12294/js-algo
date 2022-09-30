@@ -10,9 +10,9 @@ export function binarySearch(nums: number[], target: number): number {
     if (nums[mid] === target) {
       end = mid;
     } else if (nums[mid] < target) {
-      start = mid + 1;
+      start = mid;
     } else {
-      end = mid - 1;
+      end = mid;
     }
   }
 
@@ -27,3 +27,9 @@ export function binarySearch(nums: number[], target: number): number {
 
 const t1 = [1, 4, 4, 5, 7, 7, 8, 9, 9, 10];
 console.log(binarySearch(t1, 1));
+
+const t2 = [1];
+console.log(binarySearch(t2, 1));
+
+const t3 = [0, 1];
+console.log(binarySearch(t3, 1));
