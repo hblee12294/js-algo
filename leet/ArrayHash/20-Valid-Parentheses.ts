@@ -1,4 +1,4 @@
-function isValid(s: string): boolean {
+export function isValid(s: string): boolean {
   const leftChars = ["{", "(", "["];
   const rightChars = ["}", ")", "]"];
 
