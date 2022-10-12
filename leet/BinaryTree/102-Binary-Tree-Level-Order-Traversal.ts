@@ -18,7 +18,7 @@ interface TreeNode {
   right: TreeNode | null;
 }
 
-function levelOrder(root: TreeNode | null): number[][] {
+export function levelOrder(root: TreeNode | null): number[][] {
   const result: number[][] = [];
 
   if (!root) return result;
