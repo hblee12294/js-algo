@@ -1,4 +1,4 @@
-function climbStairs(n: number): number {
+export function climbStairs(n: number): number {
   const f: number[] = [];
 
   f[0] = 1;

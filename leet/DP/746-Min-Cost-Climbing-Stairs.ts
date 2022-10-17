@@ -1,4 +1,4 @@
-function minCostClimbingStairs(cost: number[]): number {
+export function minCostClimbingStairs(cost: number[]): number {
   const n = cost.length;
   const f: number[] = []; // f[x] means the cost of starting climbing from x to x+1 / x+2 (* not cost of reaching)
 

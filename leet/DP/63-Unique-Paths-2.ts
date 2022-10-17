@@ -1,4 +1,4 @@
-function uniquePathsWithObstacles(obstacleGrid: number[][]): number {
+export function uniquePathsWithObstacles(obstacleGrid: number[][]): number {
   const m = obstacleGrid.length;
   const n = obstacleGrid[0].length;
 
