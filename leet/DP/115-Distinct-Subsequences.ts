@@ -1,4 +1,4 @@
-function numDistinct(s: string, t: string): number {
+export function numDistinct(s: string, t: string): number {
   const m = s.length;
   const n = t.length;
 
