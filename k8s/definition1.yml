@@ -1,0 +1,20 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: build
+  namespace: hacker-company
+spec:
+  template:
+    spec:
+      containers:
+        - name: build
+          image: gcc:latest
+          command: ["gcc", "-o", "build", "main.c"]
+          restartPolicy: Never
+          volumeMounts:
+            - name: main
+              mountPath: /mnt/src
+      volumes:
+        - name: main
+          hostPath:
+            path: /home/ubuntu/1171933-kubernetes-job-basic-implementation/src
