@@ -13,3 +13,11 @@ test("makeCounter with initial value", () => {
 
   expect(counter()).toBe(6);
 });
+
+test("makeCounter with multi calls", () => {
+  const counter = makeCounter(0);
+
+  expect(counter()).toBe(1);
+  expect(counter()).toBe(2);
+  expect(counter()).toBe(3);
+});
