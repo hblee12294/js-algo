@@ -4,7 +4,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "test": "vitest --reporter=verbose"
+    "test": "vitest --disableConsoleIntercept"
   },
   "dependencies": {
     "next": "latest",
@@ -19,6 +19,6 @@
     "@vitejs/plugin-react": "^4.2.1",
     "jsdom": "^23.0.1",
     "typescript": "5.3.3",
-    "vitest": "1.0.4"
+    "vitest": "2.1.4"
   }
 }
