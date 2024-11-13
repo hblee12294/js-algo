@@ -45,7 +45,7 @@ describe("curry2", () => {
       expect(curried(7)(3)(2)).toBe(42);
     });
 
-    test.only("multiple args at once", () => {
+    test("multiple args at once", () => {
       const curried = curry2(mulThree);
       expect(curried()).toBeInstanceOf(Function);
       expect(curried(7, 3, 2)).toBe(42);
