@@ -78,7 +78,9 @@ export default function JsonViewer() {
       <ul>
         {keys.map((key) => (
           <li key={key}>
-            <div>{key}</div>
+            <div>
+              <span>+/-</span> {key}
+            </div>
             <div>{renderNode((node as any)[key] as Node)}</div>
           </li>
         ))}
